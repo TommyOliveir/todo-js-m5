@@ -8,47 +8,91 @@ const list = document.getElementById('list')
 
 
 
-const shoppingList = []
+let shoppingList = []
 
 
+function duplicatesNo(){
+    const result = shoppingList.filter((thing, index, self) =>
+    index === self.findIndex((t) => (
+      t.itemInput === thing.itemInput 
+    ))
+  )
+  console.log("no duplicates", result)
+  return result
+ 
+}
 
+addItemBtn.addEventListener('click', function () {
+
+
+    const randomID = Math.floor(Math.random() * 1000)
+
+    // const result = shoppingList.filter(function(text) {
+    //    return text.itemInput = itemInput.value
+    // })
+
+   
     
-addItemBtn.addEventListener('click', function(){
-/*
-Challenge:
-1. Add an if else to the event listener's function.
-2. Only add an item to the shoppingList array if it 
-   is not already in the shoppingList array.
-3. If an item is a duplicate, clear the input field
-   and log out "no duplicates".
-*/
-        if(shoppingList.includes(itemInput.value)){
-            console.log('no duplicates')
-        }
-        else{
-            shoppingList.push(itemInput.value)
-            render()        
-        }
-        itemInput.value = '' 
-       
+  
+    
+
+    console.log(shoppingList);
+    // console.log("long", result);
+  
+
+    if (shoppingList.includes(itemInput.value)) {
+        console.log('no duplicates')
+    }
+    else {
+        shoppingList.push({
+            itemInput: itemInput.value,
+            id: randomID
+        })
+        shoppingList = duplicatesNo()
+        render()
+    }
+    itemInput.value = ''
+
+
 })
 
-function render(){   
-    const randomID = Math.floor(Math.random() * 1000)
-   
+
+document.addEventListener("click", function (e) {
+    if (e.target.dataset.delete) {
+        handleDeleteClick(e.target.dataset.delete);
+    }
+
+})
+
+
+
+
+function render() {
+
+
     let html = ''
-    for (let item of shoppingList){
-        html += `<li class="list-item" >${item} <button id="${randomID}" onclick="deleteTask()">delete</button> </li>   `
+    for (let item of shoppingList) {
+        html += `<li class="list-item" >${item.itemInput} <button data-delete="${item.id}">delete</button> </li>   `
     }
     list.innerHTML = html
 }
 
 render()
 
-function deleteTask() {
-container.addEventListener('click', function(e){
-    console.log(e.target.id)
-})
+function handleDeleteClick(deleteThis) {
+    console.log(deleteThis)
+    console.log(shoppingList)
+    const resultNotdeleted = shoppingList.filter(function (del) {
+
+        return del.id != deleteThis;
+
+    });
+    shoppingList = resultNotdeleted
+    render()
+    console.log("dont", resultNotdeleted)
 }
 
 
+// const resultNotdeleted = currenttweetsData.filter(function (del) {
+//     return del.uuid !== deleteID;
+//   });
