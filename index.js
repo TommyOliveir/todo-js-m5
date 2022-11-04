@@ -71,7 +71,24 @@ function render() {
 
     let html = ''
     for (let item of shoppingList) {
-        html += `<li class="list-item" >${item.itemInput} <button data-delete="${item.id}">delete</button> <button data-quantity="${item.id}">+</button> Quantity:${item.quantity}</li>   `
+        html += `
+        <li class="list-item" > 
+            <span>
+                <p class="shop-item">${item.itemInput} </p> 
+                <p id="quantity">Quantity <span class="number-quantity">${item.quantity}</span> </p>
+            </span>
+          
+            <span>
+          
+                <button data-quantity="${item.id}">+</button>
+                <button data-delete="${item.id}" >
+                    <i class="fa-solid fa-trash" data-delete="${item.id}"></i>
+                </button>  
+            </span>
+
+        
+     
+        </li>   `
     }
     list.innerHTML = html
 }
@@ -95,9 +112,11 @@ function handleAddQuantity(addQuantity) {
     console.log(addQuantity)
     const addQuantityVar = shoppingList.filter(function (item) {
 
-        return item.id = addQuantity;
+        return item.id == addQuantity;
 
     })[0];
+
+    // console.log(addQuantityVar.itemInput)
     addQuantityVar.quantity += 1
     render()
 }
