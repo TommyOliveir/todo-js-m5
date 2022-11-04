@@ -11,15 +11,15 @@ const list = document.getElementById('list')
 let shoppingList = []
 
 
-function duplicatesNo(){
+function duplicatesNo() {
     const result = shoppingList.filter((thing, index, self) =>
-    index === self.findIndex((t) => (
-      t.itemInput === thing.itemInput 
-    ))
-  )
-  console.log("no duplicates", result)
-  return result
- 
+        index === self.findIndex((t) => (
+            t.itemInput === thing.itemInput
+        ))
+    )
+    console.log("no duplicates", result)
+    return result
+
 }
 
 addItemBtn.addEventListener('click', function () {
@@ -31,14 +31,10 @@ addItemBtn.addEventListener('click', function () {
     //    return text.itemInput = itemInput.value
     // })
 
-   
-    
-  
-    
 
     console.log(shoppingList);
     // console.log("long", result);
-  
+
 
     if (shoppingList.includes(itemInput.value)) {
         console.log('no duplicates')
@@ -46,7 +42,8 @@ addItemBtn.addEventListener('click', function () {
     else {
         shoppingList.push({
             itemInput: itemInput.value,
-            id: randomID
+            id: randomID,
+            quantity: 1
         })
         shoppingList = duplicatesNo()
         render()
@@ -61,6 +58,9 @@ document.addEventListener("click", function (e) {
     if (e.target.dataset.delete) {
         handleDeleteClick(e.target.dataset.delete);
     }
+    else if (e.target.dataset.quantity) {
+        handleAddQuantity(e.target.dataset.quantity);
+    }
 
 })
 
@@ -69,10 +69,9 @@ document.addEventListener("click", function (e) {
 
 function render() {
 
-
     let html = ''
     for (let item of shoppingList) {
-        html += `<li class="list-item" >${item.itemInput} <button data-delete="${item.id}">delete</button> </li>   `
+        html += `<li class="list-item" >${item.itemInput} <button data-delete="${item.id}">delete</button> <button data-quantity="${item.id}">+</button> Quantity:${item.quantity}</li>   `
     }
     list.innerHTML = html
 }
@@ -92,6 +91,16 @@ function handleDeleteClick(deleteThis) {
     console.log("dont", resultNotdeleted)
 }
 
+function handleAddQuantity(addQuantity) {
+    console.log(addQuantity)
+    const addQuantityVar = shoppingList.filter(function (item) {
+
+        return item.id = addQuantity;
+
+    })[0];
+    addQuantityVar.quantity += 1
+    render()
+}
 
 // const resultNotdeleted = currenttweetsData.filter(function (del) {
 //     return del.uuid !== deleteID;
