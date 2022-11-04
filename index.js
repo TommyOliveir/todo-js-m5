@@ -22,6 +22,16 @@ function duplicatesNo() {
 
 }
 
+// enter
+itemInput.addEventListener("keypress", function (event) {
+
+    if (event.key === "Enter") {
+        event.preventDefault();
+
+        addItemBtn.click();
+    }
+});
+
 addItemBtn.addEventListener('click', function () {
 
 
