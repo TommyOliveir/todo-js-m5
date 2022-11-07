@@ -39,37 +39,38 @@ itemInput.addEventListener("keypress", function (event) {
 });
 
 
-// evenlistene
+// evenlistener
 
 
-    addItemBtn.addEventListener('click', function () {
+addItemBtn.addEventListener('click', function () {
 
 
-        const randomID = Math.floor(Math.random() * 1000)
+    const randomID = Math.floor(Math.random() * 1000)
 
-        // const result = shoppingList.filter(function(text) {
-        //    return text.itemInput = itemInput.value
-        // })
-
-
-        console.log(shoppingList);
-        // console.log("long", result);
+    // const result = shoppingList.filter(function(text) {
+    //    return text.itemInput = itemInput.value
+    // })
 
 
-        if (shoppingList.includes(itemInput.value)) {
-            console.log('no duplicates')
-        }
-        else {
-            shoppingList.push({
-                itemInput: itemInput.value,
-                id: randomID,
-                quantity: 1
-            })
-            shoppingList = duplicatesNo()
-            render()
-        }
-        itemInput.value = ''
-    })
+    console.log("shoppin array", shoppingList);
+    // console.log("long", result);
+
+
+    if (itemInput.value.length > 0) {
+        console.log('my ra')
+   
+        shoppingList.push({
+            itemInput: itemInput.value,
+            id: randomID,
+            quantity: 1
+        })
+        shoppingList = duplicatesNo()
+        render()
+    }
+    itemInput.value = ''
+})
+
+   
 
 
 
