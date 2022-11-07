@@ -39,9 +39,9 @@ itemInput.addEventListener("keypress", function (event) {
 });
 
 
-// evenlisteners
+// evenlistene
 
-if (itemInput.value) {
+
     addItemBtn.addEventListener('click', function () {
 
 
@@ -70,7 +70,7 @@ if (itemInput.value) {
         }
         itemInput.value = ''
     })
-}
+
 
 
 
