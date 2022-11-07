@@ -34,14 +34,9 @@ h2 {
     height: 60vh;
     background: 
     #f5f6f7;
-   
-   
-}
-
-
-input[type="text"] {
-    border-radius: 5px;
-    border: none;
+   overflow: auto;
+   position: relative;
+   z-index: 0;
 }
 
 .list-item {
@@ -56,9 +51,23 @@ input[type="text"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-
+    z-index: 9;
 }
+.cart {
+    position: absolute;
+    left:47%;
+    top: 47%;
+    margin: auto;
+    z-index: 0;
+}
+
+
+input[type="text"] {
+    border-radius: 5px;
+    border: none;
+}
+
+
 
 ul {
     list-style: none;
