@@ -11,7 +11,7 @@ let storedlist = JSON.parse(localStorage.getItem("myList"));
 let shoppingList = []
 
 
-if(storedlist) {
+if (storedlist) {
     shoppingList = storedlist
 }
 
@@ -40,36 +40,38 @@ itemInput.addEventListener("keypress", function (event) {
 
 
 // evenlisteners
-addItemBtn.addEventListener('click', function () {
+
+if (itemInput.value) {
+    addItemBtn.addEventListener('click', function () {
 
 
-    const randomID = Math.floor(Math.random() * 1000)
+        const randomID = Math.floor(Math.random() * 1000)
 
-    // const result = shoppingList.filter(function(text) {
-    //    return text.itemInput = itemInput.value
-    // })
-
-
-    console.log(shoppingList);
-    // console.log("long", result);
+        // const result = shoppingList.filter(function(text) {
+        //    return text.itemInput = itemInput.value
+        // })
 
 
-    if (shoppingList.includes(itemInput.value)) {
-        console.log('no duplicates')
-    }
-    else {
-        shoppingList.push({
-            itemInput: itemInput.value,
-            id: randomID,
-            quantity: 1
-        })
-        shoppingList = duplicatesNo()
-        render()
-    }
-    itemInput.value = ''
-   
+        console.log(shoppingList);
+        // console.log("long", result);
 
-})
+
+        if (shoppingList.includes(itemInput.value)) {
+            console.log('no duplicates')
+        }
+        else {
+            shoppingList.push({
+                itemInput: itemInput.value,
+                id: randomID,
+                quantity: 1
+            })
+            shoppingList = duplicatesNo()
+            render()
+        }
+        itemInput.value = ''
+    })
+}
+
 
 
 document.addEventListener("click", function (e) {
@@ -90,7 +92,7 @@ document.addEventListener("click", function (e) {
 
 function render() {
 
-   
+
 
     let html = ''
     for (let item of shoppingList) {
@@ -155,7 +157,7 @@ function handleMinusQuantity(minusQuantity) {
 
     // console.log(addQuantityVar.itemInput)
     addQuantityVar.quantity -= 1
-    if(addQuantityVar.quantity < 0) {
+    if (addQuantityVar.quantity < 0) {
         addQuantityVar.quantity = 0
     }
     render()
