@@ -7,15 +7,15 @@ body,
 }
 
 h2 {
-    text-align: center;
-    margin: 0;
+    /* text-align: center; */
+    margin: 1.5em .5em .5em;
     color: #ffff;
 }
 
 .container {
     display: flex;
     flex-direction: column;
-    width: 400px;
+    width: 100%;
     margin: 1em auto 0;
     background:
     rgb(116, 204, 0);
@@ -25,13 +25,13 @@ h2 {
 
 .hero-section {
     /* background: red; */
-    padding: 2em 1em 0; 
+    padding: 1em 2em 0; 
     margin: 0;
 }
 
 .list-section {
     /* border: 1px solid rgb(161, 60, 60); */
-    height: 70vh;
+    height: 60vh;
     background: 
     #f5f6f7;
    
@@ -47,7 +47,7 @@ input[type="text"] {
 .list-item {
     /* border: 2px solid skyblue; */
     min-width: 100%;
-    padding: 8px 1.5em;
+    padding: 8px 2em;
     background-color: 
     #ffff;
     font-weight: 600;
@@ -106,7 +106,8 @@ label {
 }
 #add-item-btn:hover{
 
-    opacity: .7;
+    background:
+   rgb(72, 80, 72, .7);
 }
 
 
@@ -148,4 +149,20 @@ label {
     font-weight: 400;
     margin: 0 .2em;
     /* background: red; */
+}
+
+footer {
+    background:   rgb(72, 80, 72);
+    color: #fff;
+    padding: 1em;
+    font-size: .6em;
+    text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+    .container {
+       
+        width: 400px;
+       
+    }
 }
