@@ -32,8 +32,8 @@ h2 {
 @media (min-width: 600px) {
     .container {
          margin: 1em auto 0;
-        background: red;
-        width: 70%;
+   
+        width: 30%;
     }
 } 
 
