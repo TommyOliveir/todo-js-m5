@@ -155,6 +155,9 @@ function handleMinusQuantity(minusQuantity) {
 
     // console.log(addQuantityVar.itemInput)
     addQuantityVar.quantity -= 1
+    if(addQuantityVar.quantity < 0) {
+        addQuantityVar.quantity = 0
+    }
     render()
 }
 
