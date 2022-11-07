@@ -7,9 +7,15 @@ const itemInput = document.getElementById('item-input')
 const list = document.getElementById('list')
 
 
-
+let storedlist = JSON.parse(localStorage.getItem("myList"));
 let shoppingList = []
 
+
+if(storedlist) {
+    shoppingList = storedlist
+}
+
+console.log(storedlist)
 
 function duplicatesNo() {
     const result = shoppingList.filter((thing, index, self) =>
@@ -32,6 +38,8 @@ itemInput.addEventListener("keypress", function (event) {
     }
 });
 
+
+// evenlisteners
 addItemBtn.addEventListener('click', function () {
 
 
@@ -59,7 +67,7 @@ addItemBtn.addEventListener('click', function () {
         render()
     }
     itemInput.value = ''
-
+   
 
 })
 
@@ -68,8 +76,11 @@ document.addEventListener("click", function (e) {
     if (e.target.dataset.delete) {
         handleDeleteClick(e.target.dataset.delete);
     }
-    else if (e.target.dataset.quantity) {
-        handleAddQuantity(e.target.dataset.quantity);
+    else if (e.target.dataset.addquantity) {
+        handleAddQuantity(e.target.dataset.addquantity);
+    }
+    else if (e.target.dataset.minusquantity) {
+        handleMinusQuantity(e.target.dataset.minusquantity);
     }
 
 })
@@ -78,6 +89,8 @@ document.addEventListener("click", function (e) {
 
 
 function render() {
+
+   
 
     let html = ''
     for (let item of shoppingList) {
@@ -89,8 +102,8 @@ function render() {
             </span>
           
             <span>
-          
-                <button data-quantity="${item.id}">+</button>
+                 <button data-minusquantity="${item.id}">-</button>
+                <button data-addquantity="${item.id}">+</button>
                 <button data-delete="${item.id}" >
                     <i class="fa-solid fa-trash" data-delete="${item.id}"></i>
                 </button>  
@@ -101,6 +114,7 @@ function render() {
         </li>   `
     }
     list.innerHTML = html
+    localStorage.setItem("myList", JSON.stringify(shoppingList))
 }
 
 render()
@@ -128,6 +142,19 @@ function handleAddQuantity(addQuantity) {
 
     // console.log(addQuantityVar.itemInput)
     addQuantityVar.quantity += 1
+    render()
+}
+
+function handleMinusQuantity(minusQuantity) {
+    console.log(minusQuantity)
+    const addQuantityVar = shoppingList.filter(function (item) {
+
+        return item.id == minusQuantity;
+
+    })[0];
+
+    // console.log(addQuantityVar.itemInput)
+    addQuantityVar.quantity -= 1
     render()
 }
 
