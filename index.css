@@ -37,7 +37,9 @@ h2 {
    overflow: auto;
    position: relative;
     z-index: 1;
-   
+   background-image: url("grocery.jpg") ;
+   background-size: cover;
+   background-blend-mode: overlay;
 }
 
 .list-item {
@@ -53,15 +55,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     z-index: 999;
-  
-}
-.cart {
-  position: fixed;
-   margin-top: 10%;
-   margin-left: 10.5%;
-   z-index: -1;
-   font-size: 4em;
-   opacity: .1;
+
 }
 
 
