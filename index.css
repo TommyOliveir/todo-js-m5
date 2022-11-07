@@ -3,8 +3,15 @@ body,
 * {
     box-sizing: border-box;
     font-family: 'Karla', sans-serif;
-   margin: 0
+    margin: 0;
+    box-sizing: border-box;
 }
+
+:root {
+    /* --black: rgb(52, 53, 52);  */
+    --black: rgb(53, 61, 53);
+    --green:  rgb(116, 204, 0);
+  }
 
 h2 {
     /* text-align: center; */
@@ -17,37 +24,36 @@ h2 {
     flex-direction: column;
     width: 100%;
     margin: 1em auto 0;
-    background:
-    rgb(116, 204, 0);
+    background:var(--green);
 
     border-radius: 10px;
 }
 
 .hero-section {
     /* background: red; */
-    padding: 1em 2em 0; 
+    padding: 1em 2em 0;
     margin: 0;
 }
 
 .list-section {
     /* border: 1px solid rgb(161, 60, 60); */
     height: 60vh;
-    background: 
-    #f5f6f7;
-   overflow: auto;
-   position: relative;
+    background:
+        #f5f6f7;
+    overflow: auto;
+    position: relative;
     z-index: 1;
-   background-image: url("grocery.jpg") ;
-   background-size: cover;
-   background-blend-mode: overlay;
+    background-image: url("grocery.jpg");
+    background-size: cover;
+    background-blend-mode: overlay;
 }
 
 .list-item {
     /* border: 2px solid skyblue; */
     min-width: 100%;
     padding: 8px 2em;
-    background-color: 
-    #ffff;
+    background-color:
+        #ffff;
     font-weight: 600;
     margin-bottom: 2px;
     margin-top: 0px;
@@ -55,7 +61,7 @@ h2 {
     justify-content: space-between;
     align-items: center;
     z-index: 999;
-
+    color:var(--black);
 }
 
 
@@ -77,9 +83,9 @@ input[type="text"] {
     margin-top: 1em;
 }
 
-input:focus{
-outline: none;
-box-shadow: 0 0 5px rgb(190, 235, 30);
+input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgb(190, 235, 30);
 }
 
 label {
@@ -92,10 +98,9 @@ label {
     width: 43px
 }
 
-
+/* ADD button */
 #add-item-btn {
-    background:
-   rgb(72, 80, 72);
+    background:var(--black);
     padding: .7em;
     border-radius: 4px;
     border: none;
@@ -108,12 +113,15 @@ label {
 }
 
 #add-item-btn:active {
-    transform: scale(0.96);
+    color: rgb(128, 128, 128);
 }
-#add-item-btn:hover{
 
-    background:
-   rgb(72, 80, 72, .7);
+#add-item-btn:hover {
+
+    /* background:
+        rgb(72, 80, 72, .8); */
+      
+        transform: scale(0.96);
 }
 
 
@@ -158,7 +166,7 @@ label {
 }
 
 footer {
-    background:   rgb(72, 80, 72);
+    background: var(--black);
     color: #fff;
     padding: 1em;
     font-size: .6em;
@@ -167,8 +175,8 @@ footer {
 
 @media only screen and (min-width: 600px) {
     .container {
-       
+
         width: 400px;
-       
+
     }
 }
