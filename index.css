@@ -19,15 +19,23 @@ h2 {
     color: #ffff;
 }
 
+
 .container {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 1em auto 0;
+    /* margin: 1em auto 0; */
     background:var(--green);
 
     border-radius: 10px;
 }
+
+@media (min-width: 900px) {
+    .container {
+         margin: 1em auto 0;
+        width: 40%;
+    }
+} 
 
 .hero-section {
     /* background: red; */
@@ -173,10 +181,3 @@ footer {
     text-align: center;
 }
 
-@media only screen and (min-width: 600px) {
-    .container {
-
-        width: 400px;
-
-    }
-}
