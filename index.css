@@ -29,13 +29,14 @@ h2 {
 
     border-radius: 10px;
 }
-
-@media (min-width: 900px) {
+@media (min-width: 600px) {
     .container {
          margin: 1em auto 0;
-        width: 40%;
+        background: red;
+        width: 70%;
     }
 } 
+
 
 .hero-section {
     /* background: red; */
