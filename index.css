@@ -10,8 +10,8 @@ body,
 :root {
     /* --black: rgb(52, 53, 52);  */
     --black: rgb(53, 61, 53);
-    --green:  rgb(116, 204, 0);
-  }
+    --green: rgb(116, 204, 0);
+}
 
 h2 {
     /* text-align: center; */
@@ -25,18 +25,23 @@ h2 {
     flex-direction: column;
     width: 100%;
     /* margin: 1em auto 0; */
-    background:var(--green);
+    background: var(--green);
 
     border-radius: 10px;
 }
+
 @media (min-width: 600px) {
     .container {
-         margin: 1em auto 0;
-   
+        margin: 1em auto 0;
+
         width: 30%;
     }
-} 
+}
 
+.list--item_flex {
+    display: flex;
+    align-items: baseline;
+}
 
 .hero-section {
     /* background: red; */
@@ -70,14 +75,21 @@ h2 {
     justify-content: space-between;
     align-items: center;
     z-index: 999;
-    color:var(--black);
+    color: var(--black);
 }
+
+
 .shop-item {
-    /* background: red; */
+    background: transparent;
     max-width: 120px;
     inline-size: 150px;
     overflow-wrap: break-word;
     hyphens: manual;
+
+}
+
+input[type="checkbox"] {
+    margin-right: 15px;
 }
 
 input[type="text"] {
@@ -115,7 +127,7 @@ label {
 
 /* ADD button */
 #add-item-btn {
-    background:var(--black);
+    background: var(--black);
     padding: .7em;
     border-radius: 4px;
     border: none;
@@ -135,8 +147,8 @@ label {
 
     /* background:
         rgb(72, 80, 72, .8); */
-      
-        transform: scale(0.96);
+
+    transform: scale(0.96);
 }
 
 
@@ -171,6 +183,7 @@ label {
     margin-bottom: 0;
     color:
         #bcbcbc;
+    margin-left: 35px;
 }
 
 .number-quantity {
@@ -190,4 +203,8 @@ footer {
 
 .flex {
     display: flex;
+}
+
+.selected {
+    background: red;
 }

@@ -58,11 +58,12 @@ addItemBtn.addEventListener('click', function () {
 
     if (itemInput.value.length > 0) {
         console.log('my ra')
-   
+
         shoppingList.push({
             itemInput: itemInput.value,
             id: randomID,
-            quantity: 1
+            quantity: 1,
+           
         })
         shoppingList = duplicatesNo()
         render()
@@ -70,7 +71,7 @@ addItemBtn.addEventListener('click', function () {
     itemInput.value = ''
 })
 
-   
+
 
 
 
@@ -88,6 +89,11 @@ document.addEventListener("click", function (e) {
 
 })
 
+// list.addEventListener('change', function (e) {
+//     document.getElementById(`list-li-${e.target.id}`).parentElement.style.backgroundColor = 'lightblue'
+//     console.log(e.target.id)
+// })
+
 
 
 
@@ -98,11 +104,13 @@ function render() {
     let html = ''
     for (let item of shoppingList) {
         html += `
-        <li class="list-item" > 
-            <span>
-                <p class="shop-item">${item.itemInput} </p> 
-                <p id="quantity">Quantity <span class="number-quantity">${item.quantity}</span> </p>
-            </span>
+        <li class="list-item" id="list-li-${item.id}"> 
+                <span>
+                <input type="checkbox" id="checkbox-${item.id}" >
+                    <label class="shop-item" for="${item.id}">${item.itemInput}</label> 
+                    <p id="quantity">Quantity <span class="number-quantity">${item.quantity}</span> </p>
+               </span>
+  
           
             <span class="flex">
                  <button data-minusquantity="${item.id}">-</button>
@@ -112,7 +120,7 @@ function render() {
                 </button>  
             </span>
 
-        
+          
      
         </li>   `
     }
