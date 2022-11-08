@@ -104,7 +104,7 @@ function render() {
                 <p id="quantity">Quantity <span class="number-quantity">${item.quantity}</span> </p>
             </span>
           
-            <span>
+            <span class="flex">
                  <button data-minusquantity="${item.id}">-</button>
                 <button data-addquantity="${item.id}">+</button>
                 <button data-delete="${item.id}" >

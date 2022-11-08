@@ -72,7 +72,13 @@ h2 {
     z-index: 999;
     color:var(--black);
 }
-
+.shop-item {
+    /* background: red; */
+    max-width: 120px;
+    inline-size: 150px;
+    overflow-wrap: break-word;
+    hyphens: manual;
+}
 
 input[type="text"] {
     border-radius: 5px;
@@ -182,3 +188,6 @@ footer {
     text-align: center;
 }
 
+.flex {
+    display: flex;
+}
