@@ -52,6 +52,7 @@ addItemBtn.addEventListener("click", function () {
       itemInput: itemInput.value,
       id: randomID,
       quantity: 1,
+      checked: false,
     });
     shoppingList = duplicatesNo();
     render();
@@ -142,16 +143,41 @@ function handleCheckbox(checkboxid) {
     `checkbox-${checkboxid}`
   ).checked;
   console.log(checkedCheckbox);
-  //   console.log(checkboxid);
+  console.log(checkboxid);
+
+  const setChecked = shoppingList.filter(function (item) {
+    return item.id == checkboxid;
+  })[0];
+
   if (checkedCheckbox) {
-    console.log("check");
+    setChecked.checked = true;
+    console.log("setcheckbox", setChecked.checked);
+  } else {
+    setChecked.checked = false;
+    console.log("checkbox", setChecked.checked);
+  }
+  console.log("setchecked", setChecked);
+  //   setListColorHtml(setChecked.id);
+}
+
+function setListColorHtml(checkboxid) {
+  const setcolorList = shoppingList.map(function (item) {
+    return item.checked;
+  })[0];
+  console.log("checkvalue", setcolorList);
+
+  if (setcolorList === true) {
     document.getElementById(`list-li-${checkboxid}`).style.backgroundColor =
       "#dddddd";
   } else {
-    console.log("no check");
     document.getElementById(`list-li-${checkboxid}`).style.backgroundColor = "";
   }
 }
+
+//   document.getElementById(`list-li-${checkboxid}`).style.backgroundColor =
+//     "#dddddd";
+
+//   document.getElementById(`list-li-${checkboxid}`).style.backgroundColor = "";
 
 // const resultNotdeleted = currenttweetsData.filter(function (del) {
 //     return del.uuid !== deleteID;
