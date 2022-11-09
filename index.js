@@ -1,113 +1,84 @@
 // const emojis = ['🐥','🐯','🐼']
 // console.log(emojis.includes('🐴'))
 
-const addItemBtn = document.getElementById('add-item-btn')
-const container = document.getElementById('container')
-const itemInput = document.getElementById('item-input')
-const list = document.getElementById('list')
-
+const addItemBtn = document.getElementById("add-item-btn");
+const container = document.getElementById("container");
+const itemInput = document.getElementById("item-input");
+const list = document.getElementById("list");
 
 let storedlist = JSON.parse(localStorage.getItem("myList"));
-let shoppingList = []
-
+let shoppingList = [];
 
 if (storedlist) {
-    shoppingList = storedlist
+  shoppingList = storedlist;
 }
 
-console.log(storedlist)
+console.log(storedlist);
 
 function duplicatesNo() {
-    const result = shoppingList.filter((thing, index, self) =>
-        index === self.findIndex((t) => (
-            t.itemInput === thing.itemInput
-        ))
-    )
-    console.log("no duplicates", result)
-    return result
-
+  const result = shoppingList.filter(
+    (thing, index, self) =>
+      index === self.findIndex((t) => t.itemInput === thing.itemInput)
+  );
+  console.log("no duplicates", result);
+  return result;
 }
 
 // enter
 itemInput.addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
 
-    if (event.key === "Enter") {
-        event.preventDefault();
-
-        addItemBtn.click();
-    }
+    addItemBtn.click();
+  }
 });
-
 
 // evenlistener
 
+addItemBtn.addEventListener("click", function () {
+  const randomID = Math.floor(Math.random() * 1000);
 
-addItemBtn.addEventListener('click', function () {
+  // const result = shoppingList.filter(function(text) {
+  //    return text.itemInput = itemInput.value
+  // })
 
+  console.log("shoppin array", shoppingList);
+  // console.log("long", result);
 
-    const randomID = Math.floor(Math.random() * 1000)
+  if (itemInput.value.length > 0) {
+    console.log("my ra");
 
-    // const result = shoppingList.filter(function(text) {
-    //    return text.itemInput = itemInput.value
-    // })
-
-
-    console.log("shoppin array", shoppingList);
-    // console.log("long", result);
-
-
-    if (itemInput.value.length > 0) {
-        console.log('my ra')
-
-        shoppingList.push({
-            itemInput: itemInput.value,
-            id: randomID,
-            quantity: 1,
-           
-        })
-        shoppingList = duplicatesNo()
-        render()
-    }
-    itemInput.value = ''
-})
-
-
-
-
-
+    shoppingList.push({
+      itemInput: itemInput.value,
+      id: randomID,
+      quantity: 1,
+    });
+    shoppingList = duplicatesNo();
+    render();
+  }
+  itemInput.value = "";
+});
 
 document.addEventListener("click", function (e) {
-    if (e.target.dataset.delete) {
-        handleDeleteClick(e.target.dataset.delete);
-    }
-    else if (e.target.dataset.addquantity) {
-        handleAddQuantity(e.target.dataset.addquantity);
-    }
-    else if (e.target.dataset.minusquantity) {
-        handleMinusQuantity(e.target.dataset.minusquantity);
-    }
-
-})
-
-// list.addEventListener('change', function (e) {
-//     document.getElementById(`list-li-${e.target.id}`).parentElement.style.backgroundColor = 'lightblue'
-//     console.log(e.target.id)
-// })
-
-
-
+  if (e.target.dataset.delete) {
+    handleDeleteClick(e.target.dataset.delete);
+  } else if (e.target.dataset.addquantity) {
+    handleAddQuantity(e.target.dataset.addquantity);
+  } else if (e.target.dataset.minusquantity) {
+    handleMinusQuantity(e.target.dataset.minusquantity);
+  } else if (e.target.dataset.checkbox) {
+    handleCheckbox(e.target.dataset.checkbox);
+  }
+});
 
 function render() {
-
-
-
-    let html = ''
-    for (let item of shoppingList) {
-        html += `
+  let html = "";
+  for (let item of shoppingList) {
+    html += `
         <li class="list-item" id="list-li-${item.id}"> 
                 <span>
-                <input type="checkbox" id="checkbox-${item.id}" >
-                    <label class="shop-item" for="${item.id}">${item.itemInput}</label> 
+                <input type="checkbox" id="checkbox-${item.id}" data-checkbox="${item.id}">
+                    <label class="shop-item" for="checkbox-${item.id}">${item.itemInput}</label> 
                     <p id="quantity">Quantity <span class="number-quantity">${item.quantity}</span> </p>
                </span>
   
@@ -122,54 +93,64 @@ function render() {
 
           
      
-        </li>   `
-    }
-    list.innerHTML = html
-    localStorage.setItem("myList", JSON.stringify(shoppingList))
+        </li>   `;
+  }
+  list.innerHTML = html;
+  localStorage.setItem("myList", JSON.stringify(shoppingList));
 }
 
-render()
+render();
 
 function handleDeleteClick(deleteThis) {
-    console.log(deleteThis)
-    console.log(shoppingList)
-    const resultNotdeleted = shoppingList.filter(function (del) {
-
-        return del.id != deleteThis;
-
-    });
-    shoppingList = resultNotdeleted
-    render()
-    console.log("dont", resultNotdeleted)
+  console.log(deleteThis);
+  console.log(shoppingList);
+  const resultNotdeleted = shoppingList.filter(function (del) {
+    return del.id != deleteThis;
+  });
+  shoppingList = resultNotdeleted;
+  render();
+  console.log("dont", resultNotdeleted);
 }
 
 function handleAddQuantity(addQuantity) {
-    console.log(addQuantity)
-    const addQuantityVar = shoppingList.filter(function (item) {
+  console.log(addQuantity);
+  const addQuantityVar = shoppingList.filter(function (item) {
+    return item.id == addQuantity;
+  })[0];
 
-        return item.id == addQuantity;
-
-    })[0];
-
-    // console.log(addQuantityVar.itemInput)
-    addQuantityVar.quantity += 1
-    render()
+  // console.log(addQuantityVar.itemInput)
+  addQuantityVar.quantity += 1;
+  render();
 }
 
 function handleMinusQuantity(minusQuantity) {
-    console.log(minusQuantity)
-    const addQuantityVar = shoppingList.filter(function (item) {
+  console.log(minusQuantity);
+  const addQuantityVar = shoppingList.filter(function (item) {
+    return item.id == minusQuantity;
+  })[0];
 
-        return item.id == minusQuantity;
+  // console.log(addQuantityVar.itemInput)
+  addQuantityVar.quantity -= 1;
+  if (addQuantityVar.quantity < 0) {
+    addQuantityVar.quantity = 0;
+  }
+  render();
+}
 
-    })[0];
-
-    // console.log(addQuantityVar.itemInput)
-    addQuantityVar.quantity -= 1
-    if (addQuantityVar.quantity < 0) {
-        addQuantityVar.quantity = 0
-    }
-    render()
+function handleCheckbox(checkboxid) {
+  const checkedCheckbox = document.getElementById(
+    `checkbox-${checkboxid}`
+  ).checked;
+  console.log(checkedCheckbox);
+  //   console.log(checkboxid);
+  if (checkedCheckbox) {
+    console.log("check");
+    document.getElementById(`list-li-${checkboxid}`).style.backgroundColor =
+      "#dddddd";
+  } else {
+    console.log("no check");
+    document.getElementById(`list-li-${checkboxid}`).style.backgroundColor = "";
+  }
 }
 
 // const resultNotdeleted = currenttweetsData.filter(function (del) {
