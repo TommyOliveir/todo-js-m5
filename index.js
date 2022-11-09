@@ -143,7 +143,7 @@ function handleCheckbox(checkboxid) {
     `checkbox-${checkboxid}`
   ).checked;
   console.log(checkedCheckbox);
-  console.log(checkboxid);
+  console.log("id", checkboxid);
 
   const setChecked = shoppingList.filter(function (item) {
     return item.id == checkboxid;
@@ -152,33 +152,13 @@ function handleCheckbox(checkboxid) {
   if (checkedCheckbox) {
     setChecked.checked = true;
     console.log("setcheckbox", setChecked.checked);
+    document.getElementById(`list-li-${setChecked.id}`).style.backgroundColor =
+      "#e3faff";
   } else {
     setChecked.checked = false;
-    console.log("checkbox", setChecked.checked);
+    console.log("setcheckbox", setChecked.checked);
+    document.getElementById(`list-li-${setChecked.id}`).style.backgroundColor =
+      "";
   }
-  console.log("setchecked", setChecked);
-  //   setListColorHtml(setChecked.id);
+  console.log("setcheckedID", setChecked.id);
 }
-
-function setListColorHtml(checkboxid) {
-  const setcolorList = shoppingList.map(function (item) {
-    return item.checked;
-  })[0];
-  console.log("checkvalue", setcolorList);
-
-  if (setcolorList === true) {
-    document.getElementById(`list-li-${checkboxid}`).style.backgroundColor =
-      "#dddddd";
-  } else {
-    document.getElementById(`list-li-${checkboxid}`).style.backgroundColor = "";
-  }
-}
-
-//   document.getElementById(`list-li-${checkboxid}`).style.backgroundColor =
-//     "#dddddd";
-
-//   document.getElementById(`list-li-${checkboxid}`).style.backgroundColor = "";
-
-// const resultNotdeleted = currenttweetsData.filter(function (del) {
-//     return del.uuid !== deleteID;
-//   });
