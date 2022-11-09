@@ -76,11 +76,19 @@ function render() {
   let html = "";
   for (let item of shoppingList) {
     html += `
-        <li class="list-item" id="list-li-${item.id}"> 
+        <li class="list-item ${
+          item.checked === true ? "checkedbg" : ""
+        }" id="list-li-${item.id} "> 
                 <span>
-                <input type="checkbox" id="checkbox-${item.id}" data-checkbox="${item.id}">
-                    <label class="shop-item" for="checkbox-${item.id}">${item.itemInput}</label> 
-                    <p id="quantity">Quantity <span class="number-quantity">${item.quantity}</span> </p>
+                <input type="checkbox" id="checkbox-${
+                  item.id
+                }" data-checkbox="${item.id}" ${item.checked ? "checked" : ""} >
+                    <label class="shop-item" for="checkbox-${item.id}">${
+      item.itemInput
+    }</label> 
+                    <p id="quantity">Quantity <span class="number-quantity">${
+                      item.quantity
+                    }</span> </p>
                </span>
   
           
@@ -96,6 +104,7 @@ function render() {
      
         </li>   `;
   }
+
   list.innerHTML = html;
   localStorage.setItem("myList", JSON.stringify(shoppingList));
 }
@@ -152,13 +161,14 @@ function handleCheckbox(checkboxid) {
   if (checkedCheckbox) {
     setChecked.checked = true;
     console.log("setcheckbox", setChecked.checked);
-    document.getElementById(`list-li-${setChecked.id}`).style.backgroundColor =
-      "#e3faff";
   } else {
     setChecked.checked = false;
     console.log("setcheckbox", setChecked.checked);
-    document.getElementById(`list-li-${setChecked.id}`).style.backgroundColor =
-      "";
+    // document.getElementById(`list-li-${setChecked.id}`).style.backgroundColor =
+    //   "";
   }
+  localStorage.setItem("myList", JSON.stringify(shoppingList));
   console.log("setcheckedID", setChecked.id);
+  console.log(shoppingList);
+  render();
 }
